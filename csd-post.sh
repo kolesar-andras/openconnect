@@ -62,7 +62,7 @@ while [ "$1" ]; do
     shift
 done
 
-PINNEDPUBKEY="-s ${CSD_SHA256:+"-k --pinnedpubkey sha256//$CSD_SHA256"}"
+PINNEDPUBKEY="--insecure -s ${CSD_SHA256:+"-k --pinnedpubkey sha256//$CSD_SHA256"}"
 URL="https://$CSD_HOSTNAME/+CSCOE+/sdesktop/token.xml?ticket=$TICKET&stub=$STUB"
 COOKIE_HEADER="Cookie: sdesktop="$(curl $PINNEDPUBKEY -s "$URL"  | xmlstarlet sel -t -v /hostscan/token)
 CONTENT_HEADER="Content-Type: text/xml"
